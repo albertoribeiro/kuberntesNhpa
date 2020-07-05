@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: goweb-square-hpa
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: goweb-square-hpa
+    template: 
+        metadata:
+            labels:
+                app: goweb-square-hpa 
+        spec: 
+            containers:
+            - name: goweb-square
+              image: albertoribeiroflavio/kubernetesnhpa    
+              ports:
+              - containerPort: 8000
+              resources: 
+                requests:
+                  memory: "100Mi"
+                  cpu: "200m"
+                limits:
+                  cpu: "250m"
